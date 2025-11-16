@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard Pengguna</title>
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <!-- Bootstrap Icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        />
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <!-- AOS - Animate On Scroll Library -->
+        <link
+            href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+            rel="stylesheet"
+        />
+        <!-- Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            :root {
+                --primary-color: #4361ee;
+                --secondary-color: #3a0ca3;
+                --accent-color: #4cc9f0;
+                --success-color: #4cb8b3;
+                --warning-color: #f3a712;
+                --danger-color: #e63946;
+                --dark-color: #212529;
+                --light-color: #f8f9fa;
+                --body-bg: #f5f7fa;
+            }
+
+            body {
+                font-family: "Poppins", sans-serif;
+                background-color: var(--body-bg);
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                color: #333;
+                overflow-x: hidden;
+            }
+
+            /* Navigation */
+            .navbar {
+                background: linear-gradient(135deg, #4361ee, #3a0ca3);
+                box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+                padding: 15px 0;
+            }
+
+            .navbar-brand {
+                font-weight: 700;
+                font-size: 1.5rem;
+                display: flex;
+                align-items: center;
+            }
+
+            .navbar-brand i {
+                margin-right: 10px;
+                font-size: 1.75rem;
+                color: var(--accent-color);
+            }
+
+            .navbar-toggler {
+                border: none;
+                padding: 0;
+            }
+
+            .navbar-toggler:focus {
+                box-shadow: none;
+            }
+
+            .navbar-dark .navbar-nav .nav-link {
+                color: rgba(255, 255, 255, 0.85);
+                font-weight: 500;
+                padding: 0.5rem 1rem;
+                border-radius: 5px;
+                transition: all 0.3s ease;
+            }
+
+            .navbar-dark .navbar-nav .nav-link:hover {
+                color: white;
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            /* Container */
+            .main-container {
+                padding: 30px 20px;
+                max-width: 1400px;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            /* Welcome Section */
+            .welcome-section {
+                background: white;
+                border-radius: 16px;
+                padding: 30px;
+                margin-bottom: 30px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .welcome-section h2 {
+                margin: 0;
+                font-weight: 700;
+            }
+
+            .welcome-text {
+                max-width: 600px;
+            }
+
+            .welcome-image {
+                width: 200px;
+                height: 200px;
+                background: url("https://img.freepik.com/free-vector/eco-energy-concept_74855-6695.jpg?w=826&t=st=1688549596~exp=1688550196~hmac=13f9e2e5e733220a22967de4bc3d7164b25f0c7ec6ce91ebc3e5a961c76ba1c7")
+                    center/cover;
+                border-radius: 50%;
+                display: none;
+            }
+
+            @media (min-width: 768px) {
+                .welcome-image {
+                    display: block;
+                }
+            }
+
+            /* Stats Cards */
+            .stats-card {
+                background: white;
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                height: 100%;
+                transition: all 0.3s ease;
+            }
+
+            .stats-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .stats-card .card-body {
+                padding: 25px 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+                min-height: 180px;
+            }
+
+            .stats-icon {
+                width: 60px;
+                height: 60px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 15px;
+                background-color: rgba(77, 201, 240, 0.1);
+            }
+
+            .stats-icon i {
+                font-size: 28px;
+                color: var(--primary-color);
+            }
+
+            .stats-card h5 {
+                font-weight: 600;
+                margin-bottom: 10px;
+                color: #555;
+            }
+
+            .stats-card .stats-value {
+                font-size: 1.75rem;
+                font-weight: 700;
+                margin-bottom: 10px;
+                color: var(--dark-color);
+            }
+
+            .stats-card .stats-change {
+                font-size: 0.9rem;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+            /* Chart Card */
+            .chart-card {
+                background: white;
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                margin-bottom: 30px;
+            }
+
+            .chart-card .card-header {
+                background-color: white;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                font-weight: 600;
+                padding: 20px 25px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .chart-card .card-body {
+                padding: 20px 25px;
+            }
+
+            .chart-options {
+                display: flex;
+                gap: 10px;
+            }
+
+            .chart-filter {
+                padding: 5px 15px;
+                font-size: 0.85rem;
+                background-color: #f8f9fa;
+                border: 1px solid #e9ecef;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+
+            .chart-filter:hover,
+            .chart-filter.active {
+                background-color: var(--primary-color);
+                color: white;
+                border-color: var(--primary-color);
+            }
+
+            .chart-container {
+                height: 350px;
+                position: relative;
+            }
+
+            /* Tips Card */
+            .tips-card {
+                background: white;
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            }
+
+            .tips-card .card-header {
+                background-color: white;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                font-weight: 600;
+                padding: 20px 25px;
+                display: flex;
+                align-items: center;
+                color: var(--primary-color);
+            }
+
+            .tips-card .card-header i {
+                margin-right: 10px;
+                font-size: 1.25rem;
+            }
+
+            .tips-card .card-body {
+                padding: 0;
+            }
+
+            .tips-card .list-group-item {
+                border: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                padding: 15px 25px;
+                transition: all 0.2s;
+            }
+
+            .tips-card .list-group-item:last-child {
+                border-bottom: none;
+            }
+
+            .tips-card .list-group-item:hover {
+                background-color: rgba(67, 97, 238, 0.05);
+                transform: translateX(5px);
+            }
+
+            .tips-card .list-group-item::before {
+                content: "\F270";
+                font-family: "Bootstrap-icons";
+                margin-right: 10px;
+                color: var(--success-color);
+            }
+
+            /* Responsive */
+            @media (max-width: 767.98px) {
+                .main-container {
+                    padding: 20px 15px;
+                }
+
+                .welcome-section {
+                    padding: 20px;
+                }
+
+                .welcome-section h2 {
+                    font-size: 1.5rem;
+                }
+
+                .stats-card .card-body {
+                    padding: 20px 15px;
+                }
+
+                .chart-container {
+                    height: 280px;
+                }
+            }
+
+            /* Dark mode */
+            .dark-mode {
+                background-color: #1a1a2e;
+                color: #e6e6e6;
+            }
+
+            .dark-mode .welcome-section,
+            .dark-mode .stats-card,
+            .dark-mode .chart-card,
+            .dark-mode .tips-card {
+                background-color: #16213e;
+                color: #e6e6e6;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            }
+
+            .dark-mode .chart-card .card-header,
+            .dark-mode .tips-card .card-header {
+                background-color: #16213e;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                color: #e6e6e6;
+            }
+
+            .dark-mode .stats-card h5 {
+                color: #b0b0b0;
+            }
+
+            .dark-mode .stats-card .stats-value {
+                color: #ffffff;
+            }
+
+            .dark-mode .chart-filter {
+                background-color: #0f3460;
+                border-color: #0f3460;
+                color: #e6e6e6;
+            }
+
+            .dark-mode .chart-filter:hover,
+            .dark-mode .chart-filter.active {
+                background-color: var(--primary-color);
+                border-color: var(--primary-color);
+            }
+
+            .dark-mode .tips-card .list-group-item {
+                background-color: #16213e;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                color: #e6e6e6;
+            }
+
+            .dark-mode .tips-card .list-group-item:hover {
+                background-color: #233152;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="bi bi-lightning-charge-fill"></i>
+                    Energy Dashboard
+                </a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="bi bi-house-door me-1"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-graph-up me-1"></i>
+                                Statistik
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-bell me-1"></i>
+                                Notifikasi
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-person me-1"></i>
+                                Profil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">
+                                <i class="bi bi-box-arrow-right me-1"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-container">
+            <!-- Welcome Section -->
+            <div
+                class="welcome-section"
+                data-aos="fade-up"
+                data-aos-duration="800"
+            >
+                <div class="welcome-text">
+                    <h2>Selamat Datang, User!</h2>
+                    <p class="mt-2 text-muted">
+                        Monitor penggunaan energi Anda secara real-time dan
+                        lihat statistik konsumsi energi untuk penghematan lebih
+                        baik.
+                    </p>
+                    <div class="form-check form-switch mt-3">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="darkModeSwitch"
+                        />
+                        <label class="form-check-label" for="darkModeSwitch">
+                            <i class="bi bi-moon-stars me-2"></i>Mode Gelap
+                        </label>
+                    </div>
+                </div>
+                <div class="welcome-image"></div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stats-card">
+                        <div class="card-body">
+                            <div
+                                class="stats-icon"
+                                style="
+                                    background-color: rgba(77, 201, 240, 0.1);
+                                "
+                            >
+                                <i
+                                    class="bi bi-graph-up"
+                                    style="color: var(--primary-color)"
+                                ></i>
+                            </div>
+                            <h5>Penggunaan Hari Ini</h5>
+                            <div class="stats-value">5.2 kWh</div>
+                            <div class="stats-change text-success">
+                                <i class="bi bi-arrow-down"></i>
+                                8% dari kemarin
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stats-card">
+                        <div class="card-body">
+                            <div
+                                class="stats-icon"
+                                style="
+                                    background-color: rgba(243, 167, 18, 0.1);
+                                "
+                            >
+                                <i
+                                    class="bi bi-cash-coin"
+                                    style="color: var(--warning-color)"
+                                ></i>
+                            </div>
+                            <h5>Estimasi Biaya Bulan Ini</h5>
+                            <div class="stats-value">Rp 125.000</div>
+                            <div class="stats-change text-danger">
+                                <i class="bi bi-arrow-up"></i>
+                                3% dari bulan lalu
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stats-card">
+                        <div class="card-body">
+                            <div
+                                class="stats-icon"
+                                style="
+                                    background-color: rgba(76, 184, 179, 0.1);
+                                "
+                            >
+                                <i
+                                    class="bi bi-hdd-stack"
+                                    style="color: var(--success-color)"
+                                ></i>
+                            </div>
+                            <h5>Perangkat Aktif</h5>
+                            <div class="stats-value">8</div>
+                            <div class="stats-change text-muted">
+                                <i class="bi bi-dash"></i>
+                                Tidak ada perubahan
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Usage Chart -->
+            <div
+                class="chart-card mb-4"
+                data-aos="fade-up"
+                data-aos-delay="150"
+            >
+                <div class="card-header">
+                    <div>Grafik Penggunaan Energi</div>
+                    <div class="chart-options">
+                        <div class="chart-filter" data-period="daily">
+                            Harian
+                        </div>
+                        <div class="chart-filter active" data-period="weekly">
+                            Mingguan
+                        </div>
+                        <div class="chart-filter" data-period="monthly">
+                            Bulanan
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="usageChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- Energy Tips -->
+                <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tips-card">
+                        <div class="card-header">
+                            <i class="bi bi-lightbulb-fill"></i>
+                            Tips Hemat Energi
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    Matikan lampu jika tidak digunakan.
+                                </li>
+                                <li class="list-group-item">
+                                    Gunakan peralatan elektronik dengan rating
+                                    energi A++.
+                                </li>
+                                <li class="list-group-item">
+                                    Cabut charger saat tidak mengisi daya.
+                                </li>
+                                <li class="list-group-item">
+                                    Atur suhu AC di 25°C untuk efisiensi
+                                    maksimal.
+                                </li>
+                                <li class="list-group-item">
+                                    Gunakan lampu LED yang lebih hemat energi
+                                    daripada lampu pijar.
+                                </li>
+                                <li class="list-group-item">
+                                    Lakukan perawatan rutin pada peralatan
+                                    elektronik untuk memastikan efisiensi.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Device Status -->
+                <div class="col-lg-5" data-aos="fade-up" data-aos-delay="250">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div>Status Perangkat</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group">
+                                <a
+                                    href="#"
+                                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                                >
+                                    <div>
+                                        <i class="bi bi-lightbulb me-2"></i>
+                                        Lampu Ruang Tamu
+                                    </div>
+                                    <span class="badge bg-success rounded-pill"
+                                        >Aktif</span
+                                    >
+                                </a>
+                                <a
+                                    href="#"
+                                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                                >
+                                    <div>
+                                        <i class="bi bi-display me-2"></i>
+                                        TV Ruang Keluarga
+                                    </div>
+                                    <span class="badge bg-danger rounded-pill"
+                                        >Nonaktif</span
+                                    >
+                                </a>
+                                <a
+                                    href="#"
+                                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                                >
+                                    <div>
+                                        <i class="bi bi-fan me-2"></i>
+                                        AC Kamar Tidur
+                                    </div>
+                                    <span class="badge bg-success rounded-pill"
+                                        >Aktif</span
+                                    >
+                                </a>
+                                <a
+                                    href="#"
+                                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                                >
+                                    <div>
+                                        <i class="bi bi-water me-2"></i>
+                                        Dispenser Air
+                                    </div>
+                                    <span class="badge bg-success rounded-pill"
+                                        >Aktif</span
+                                    >
+                                </a>
+                                <a
+                                    href="#"
+                                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                                >
+                                    <div>
+                                        <i class="bi bi-laptop me-2"></i>
+                                        Komputer Kerja
+                                    </div>
+                                    <span class="badge bg-success rounded-pill"
+                                        >Aktif</span
+                                    >
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-light py-4 mt-5">
+            <div class="container text-center">
+                <p class="mb-1">© 2023 Energy Monitoring System</p>
+                <p class="small text-muted mb-0">
+                    Monitor penggunaan energi Anda secara efektif
+                </p>
+            </div>
+        </footer>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- AOS JS -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <!-- Custom JS -->
+        <script>
+            // Initialize AOS
+            AOS.init();
+
+            // Chart.js setup
+            const ctx = document.getElementById("usageChart").getContext("2d");
+
+            // Daily data
+            const dailyData = {
+                labels: [
+                    "00:00",
+                    "04:00",
+                    "08:00",
+                    "12:00",
+                    "16:00",
+                    "20:00",
+                    "23:59",
+                ],
+                datasets: [
+                    {
+                        label: "kWh",
+                        data: [0.8, 0.5, 0.9, 1.2, 0.7, 1.1, 0.9],
+                        borderColor: "#4361ee",
+                        backgroundColor: "rgba(67, 97, 238, 0.1)",
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: "#4361ee",
+                    },
+                ],
+            };
+
+            // Weekly data
+            const weeklyData = {
+                labels: [
+                    "Senin",
+                    "Selasa",
+                    "Rabu",
+                    "Kamis",
+                    "Jumat",
+                    "Sabtu",
+                    "Minggu",
+                ],
+                datasets: [
+                    {
+                        label: "kWh",
+                        data: [4.5, 5.0, 5.5, 4.8, 6.1, 7.0, 5.2],
+                        borderColor: "#4361ee",
+                        backgroundColor: "rgba(67, 97, 238, 0.1)",
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: "#4361ee",
+                    },
+                ],
+            };
+
+            // Monthly data
+            const monthlyData = {
+                labels: [
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "Mei",
+                    "Jun",
+                    "Jul",
+                    "Agu",
+                    "Sep",
+                    "Okt",
+                    "Nov",
+                    "Des",
+                ],
+                datasets: [
+                    {
+                        label: "kWh",
+                        data: [
+                            120, 135, 125, 130, 142, 138, 145, 150, 147, 143,
+                            139, 152,
+                        ],
+                        borderColor: "#4361ee",
+                        backgroundColor: "rgba(67, 97, 238, 0.1)",
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: "#4361ee",
+                    },
+                ],
+            };
+
+            // Chart configuration
+            const chartConfig = {
+                type: "line",
+                data: weeklyData, // Default to weekly
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: "kWh",
+                            },
+                            grid: {
+                                drawBorder: false,
+                            },
+                        },
+                        x: {
+                            grid: {
+                                display: false,
+                            },
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            backgroundColor: "rgba(0, 0, 0, 0.7)",
+                            padding: 10,
+                            titleFont: {
+                                size: 14,
+                            },
+                            bodyFont: {
+                                size: 14,
+                            },
+                        },
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: "index",
+                    },
+                    animation: {
+                        duration: 1000,
+                    },
+                },
+            };
+
+            // Create chart
+            const usageChart = new Chart(ctx, chartConfig);
+
+            // Period filter functionality
+            document.querySelectorAll(".chart-filter").forEach((filter) => {
+                filter.addEventListener("click", function () {
+                    // Remove active class from all filters
+                    document.querySelectorAll(".chart-filter").forEach((f) => {
+                        f.classList.remove("active");
+                    });
+
+                    // Add active class to clicked filter
+                    this.classList.add("active");
+
+                    // Update chart data based on selected period
+                    const period = this.dataset.period;
+                    if (period === "daily") {
+                        usageChart.data = dailyData;
+                    } else if (period === "weekly") {
+                        usageChart.data = weeklyData;
+                    } else if (period === "monthly") {
+                        usageChart.data = monthlyData;
+                    }
+
+                    // Update chart
+                    usageChart.update();
+                });
+            });
+
+            // Dark Mode Toggle
+            const darkModeSwitch = document.getElementById("darkModeSwitch");
+            const body = document.body;
+
+            // Check for saved dark mode preference or use OS preference
+            const isDarkMode =
+                localStorage.getItem("darkMode") === "enabled" ||
+                (window.matchMedia &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches &&
+                    localStorage.getItem("darkMode") !== "disabled");
+
+            // Set initial state
+            if (isDarkMode) {
+                body.classList.add("dark-mode");
+                darkModeSwitch.checked = true;
+            }
+
+            // Toggle dark mode
+            darkModeSwitch.addEventListener("change", function () {
+                if (this.checked) {
+                    body.classList.add("dark-mode");
+                    localStorage.setItem("darkMode", "enabled");
+                } else {
+                    body.classList.remove("dark-mode");
+                    localStorage.setItem("darkMode", "disabled");
+                }
+            });
+        </script>
+    </body>
+</html>
