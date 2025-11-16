@@ -1,0 +1,773 @@
+/* ========================================================================
+   Modern Energy Monitoring Dashboard - External Stylesheet
+   ======================================================================== */
+
+/* CSS Variables for easy theme customization */
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #4cc9f0;
+  --success-color: #4cb8b3;
+  --warning-color: #f3a712;
+  --danger-color: #e63946;
+  --dark-color: #212529;
+  --light-color: #f8f9fa;
+  --body-bg: #f5f7fa;
+  --login-bg: linear-gradient(135deg, #4a8eff, #5e60ce);
+}
+
+/* ========================================================================
+   Base & Typography
+   ======================================================================== */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--body-bg);
+  min-height: 100vh;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* ========================================================================
+   Login Page Styles
+   ======================================================================== */
+body.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--login-bg);
+}
+
+.login-card {
+  max-width: 450px;
+  width: 90%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.login-header {
+  background: #5e60ce;
+  padding: 30px 0;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.login-header .icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.login-card .card-body {
+  padding: 40px;
+}
+
+.form-floating > label {
+  color: #666;
+}
+
+.form-floating .form-control {
+  border-radius: 10px;
+  height: 60px;
+  border: 2px solid #e1e1e1;
+}
+
+.form-floating .form-control:focus {
+  border-color: #5e60ce;
+  box-shadow: 0 0 0 0.25rem rgba(94, 96, 206, 0.25);
+}
+
+.password-toggle {
+  position: absolute;
+  right: 15px;
+  top: 18px;
+  cursor: pointer;
+  color: #666;
+  z-index: 10;
+}
+
+/* ========================================================================
+   Sidebar (Admin Dashboard)
+   ======================================================================== */
+.sidebar {
+  width: 280px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--dark-color);
+  color: #fff;
+  z-index: 1030;
+  transition: all 0.3s;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-brand {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-brand i {
+  font-size: 1.75rem;
+  margin-right: 10px;
+  color: var(--accent-color);
+}
+
+.sidebar-menu {
+  padding: 20px 0;
+  list-style: none;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin: 5px 15px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sidebar-menu a {
+  padding: 12px 20px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+  border-radius: 8px;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.sidebar-menu a i {
+  margin-right: 10px;
+  font-size: 1.25rem;
+  width: 30px;
+  text-align: center;
+}
+
+/* ========================================================================
+   Main Content Area (Admin)
+   ======================================================================== */
+.main-content {
+  margin-left: 280px;
+  padding: 20px;
+  flex: 1;
+  transition: all 0.3s;
+  width: calc(100% - 280px);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.toggle-sidebar {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+  display: none;
+}
+
+/* ========================================================================
+   Header
+   ======================================================================== */
+.header {
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+/* ========================================================================
+   Navigation (User Dashboard)
+   ======================================================================== */
+.navbar {
+  background: linear-gradient(135deg, #4361ee, #3a0ca3);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand i {
+  margin-right: 10px;
+  font-size: 1.75rem;
+  color: var(--accent-color);
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================================================
+   Container (User)
+   ======================================================================== */
+.main-container {
+  padding: 30px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ========================================================================
+   Welcome Section (User)
+   ======================================================================== */
+.welcome-section {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.welcome-section h2 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.welcome-text {
+  max-width: 600px;
+}
+
+.welcome-image {
+  width: 200px;
+  height: 200px;
+  background: url("https://img.freepik.com/free-vector/eco-energy-concept_74855-6695.jpg?w=826&t=st=1688549596~exp=1688550196~hmac=13f9e2e5e733220a22967de4bc3d7164b25f0c7ec6ce91ebc3e5a961c76ba1c7")
+    center/cover;
+  border-radius: 50%;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .welcome-image {
+    display: block;
+  }
+}
+
+/* ========================================================================
+   Cards (Stat Cards)
+   ======================================================================== */
+.stat-card,
+.stats-card {
+  background: white;
+  border-radius: 16px;
+  border: none;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover,
+.stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card .card-body,
+.stats-card .card-body {
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 180px;
+}
+
+.stat-icon,
+.stats-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  background-color: rgba(77, 201, 240, 0.1);
+}
+
+.stat-icon i,
+.stats-icon i {
+  font-size: 28px;
+  color: var(--primary-color);
+}
+
+.stats-card h5 {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.stats-card .stats-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--dark-color);
+}
+
+.stats-card .stats-change {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ========================================================================
+   Data Tables
+   ======================================================================== */
+.data-table {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.data-table .table {
+  margin-bottom: 0;
+}
+
+.data-table .card-header {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+}
+
+.data-table .card-header i {
+  color: var(--primary-color);
+  margin-right: 10px;
+}
+
+.data-table .card-body {
+  padding: 1.5rem;
+}
+
+/* ========================================================================
+   Chart Card
+   ======================================================================== */
+.chart-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
+
+.chart-card .card-header {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-card .card-body {
+  padding: 20px 25px;
+}
+
+.chart-options {
+  display: flex;
+  gap: 10px;
+}
+
+.chart-filter {
+  padding: 5px 15px;
+  font-size: 0.85rem;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.chart-filter:hover,
+.chart-filter.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.chart-container {
+  height: 350px;
+  position: relative;
+}
+
+/* ========================================================================
+   Tips Card
+   ======================================================================== */
+.tips-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tips-card .card-header {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+  padding: 20px 25px;
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+}
+
+.tips-card .card-header i {
+  margin-right: 10px;
+  font-size: 1.25rem;
+}
+
+.tips-card .card-body {
+  padding: 0;
+}
+
+.tips-card .list-group-item {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 15px 25px;
+  transition: all 0.2s;
+}
+
+.tips-card .list-group-item:last-child {
+  border-bottom: none;
+}
+
+.tips-card .list-group-item:hover {
+  background-color: rgba(67, 97, 238, 0.05);
+  transform: translateX(5px);
+}
+
+.tips-card .list-group-item::before {
+  content: "\F270";
+  font-family: "Bootstrap-icons";
+  margin-right: 10px;
+  color: var(--success-color);
+}
+
+/* ========================================================================
+   Buttons & Badges
+   ======================================================================== */
+.badge {
+  padding: 6px 12px;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+.btn {
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon i {
+  margin-right: 6px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(67, 97, 238, 0.3);
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.btn-success:hover {
+  background-color: #3da8a3;
+  border-color: #3da8a3;
+}
+
+.btn-warning {
+  background-color: var(--warning-color);
+  border-color: var(--warning-color);
+  color: white;
+}
+
+.btn-warning:hover {
+  background-color: #e39700;
+  border-color: #e39700;
+  color: white;
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+}
+
+.btn-danger:hover {
+  background-color: #d32836;
+  border-color: #d32836;
+}
+
+.action-buttons .btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+/* ========================================================================
+   Modal
+   ======================================================================== */
+.modal-content {
+  border-radius: 12px;
+  border: none;
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: rgba(67, 97, 238, 0.05);
+}
+
+.modal-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ========================================================================
+   Form Controls
+   ======================================================================== */
+.form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* ========================================================================
+   Dark Mode
+   ======================================================================== */
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode .sidebar {
+  background: #1a1a1a;
+}
+
+body.dark-mode .header,
+body.dark-mode .stat-card,
+body.dark-mode .stats-card,
+body.dark-mode .data-table,
+body.dark-mode .modal-content,
+body.dark-mode .welcome-section,
+body.dark-mode .chart-card,
+body.dark-mode .tips-card {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .data-table .card-header,
+body.dark-mode .chart-card .card-header,
+body.dark-mode .tips-card .card-header {
+  background-color: #1e1e1e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .table {
+  color: #f0f0f0;
+}
+
+body.dark-mode .text-muted {
+  color: #b0b0b0 !important;
+}
+
+body.dark-mode .list-group-item {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .stats-card h5 {
+  color: #b0b0b0;
+}
+
+body.dark-mode .stats-card .stats-value {
+  color: #ffffff;
+}
+
+body.dark-mode .chart-filter {
+  background-color: #0f3460;
+  border-color: #0f3460;
+  color: #e6e6e6;
+}
+
+body.dark-mode .chart-filter:hover,
+body.dark-mode .chart-filter.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+body.dark-mode .tips-card .list-group-item {
+  background-color: #1e1e1e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #e6e6e6;
+}
+
+body.dark-mode .tips-card .list-group-item:hover {
+  background-color: #233152;
+}
+
+/* ========================================================================
+   Responsive Design
+   ======================================================================== */
+@media (max-width: 992px) {
+  .sidebar {
+    margin-left: -280px;
+    z-index: 1050;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .sidebar.active {
+    margin-left: 0;
+  }
+
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 15px 10px;
+  }
+
+  .toggle-sidebar {
+    display: block;
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    z-index: 1060;
+    background: var(--dark-color);
+    border-radius: 4px;
+  }
+
+  .header {
+    margin-top: 30px;
+    padding: 12px 15px;
+  }
+
+  .data-table .table {
+    min-width: 800px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .main-container {
+    padding: 20px 15px;
+  }
+
+  .welcome-section {
+    padding: 20px;
+  }
+
+  .welcome-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .stats-card .card-body {
+    padding: 20px 15px;
+  }
+
+  .chart-container {
+    height: 280px;
+  }
+}
