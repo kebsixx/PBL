@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tips Hemat Energi - Energy Monitor</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body class="user-dashboard">
+    <!-- Top Navigation -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+      <div class="container-fluid px-4">
+        <a
+          class="navbar-brand d-flex align-items-center"
+          href="dashboard-user.html">
+          <i
+            class="bi bi-lightning-charge-fill text-primary me-2"
+            style="font-size: 1.5rem"></i>
+          <span class="fw-bold">Energy Monitor</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard-user.html">
+                <i class="bi bi-house-door me-1"></i>Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="user-grafik.html">
+                <i class="bi bi-graph-up me-1"></i>Grafik Data
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="user-tips.html">
+                <i class="bi bi-lightbulb me-1"></i>Tips Hemat
+              </a>
+            </li>
+            <li class="nav-item dropdown ms-3">
+              <a
+                class="nav-link dropdown-toggle d-flex align-items-center"
+                href="#"
+                id="userDropdown"
+                role="button"
+                data-bs-toggle="dropdown">
+                <div class="user-avatar-sm me-2">U</div>
+                <span>User</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="bi bi-person me-2"></i>Profil</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="bi bi-gear me-2"></i>Pengaturan</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item text-danger" href="../index.html"
+                    ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container py-4">
+      <div class="container-fluid px-4">
+        <!-- Page Header -->
+        <div class="row mb-4" data-aos="fade-down">
+          <div class="col-md-8">
+            <h4 class="mb-1">Tips Hemat Energi 💡</h4>
+            <p class="text-muted mb-0">
+              Pelajari cara menghemat listrik dan mengurangi tagihan
+            </p>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-text bg-white"
+                ><i class="bi bi-search"></i
+              ></span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Cari tips..."
+                id="searchTips" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="row mb-4">
+          <div class="col-12" data-aos="fade-up">
+            <div class="d-flex gap-2 flex-wrap">
+              <button
+                class="btn btn-sm btn-primary category-filter active"
+                data-category="all">
+                Semua
+              </button>
+              <button
+                class="btn btn-sm btn-outline-primary category-filter"
+                data-category="pencahayaan">
+                <i class="bi bi-lightbulb me-1"></i>Pencahayaan
+              </button>
+              <button
+                class="btn btn-sm btn-outline-primary category-filter"
+                data-category="elektronik">
+                <i class="bi bi-plug me-1"></i>Elektronik
+              </button>
+              <button
+                class="btn btn-sm btn-outline-primary category-filter"
+                data-category="pendinginan">
+                <i class="bi bi-thermometer me-1"></i>Pendinginan
+              </button>
+              <button
+                class="btn btn-sm btn-outline-primary category-filter"
+                data-category="umum">
+                <i class="bi bi-star me-1"></i>Umum
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tips Grid -->
+        <div class="row g-4" id="tipsContainer">
+          <div
+            class="col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="100"
+            data-category="pencahayaan">
+            <div class="tip-card-minimal">
+              <div class="tip-icon-wrap bg-warning-subtle">
+                <i class="bi bi-lightbulb-fill text-warning"></i>
+              </div>
+              <div class="tip-content">
+                <span class="badge bg-warning-subtle text-warning mb-2"
+                  >Pencahayaan</span
+                >
+                <h5>Gunakan Lampu LED</h5>
+                <p class="text-muted">
+                  Lampu LED menggunakan hingga 75% lebih sedikit energi
+                  dibanding lampu pijar konvensional dan bertahan 25 kali lebih
+                  lama.
+                </p>
+                <div class="d-flex align-items-center text-success">
+                  <i class="bi bi-arrow-down-circle me-2"></i>
+                  <small
+                    ><strong>Hemat hingga 75%</strong> konsumsi listrik</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+            data-category="pendinginan">
+            <div class="tip-card-minimal">
+              <div class="tip-icon-wrap bg-info-subtle">
+                <i class="bi bi-thermometer-half text-info"></i>
+              </div>
+              <div class="tip-content">
+                <span class="badge bg-info-subtle text-info mb-2"
+                  >Pendinginan</span
+                >
+                <h5>Atur Suhu AC 25°C</h5>
+                <p class="text-muted">
+                  Setiap penurunan 1°C meningkatkan konsumsi listrik AC sekitar
+                  3-5%. Suhu 25°C adalah suhu ideal untuk kenyamanan dan
+                  efisiensi.
+                </p>
+                <div class="d-flex align-items-center text-success">
+                  <i class="bi bi-arrow-down-circle me-2"></i>
+                  <small><strong>Hemat 10-15%</strong> energi AC</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="300"
+            data-category="elektronik">
+            <div class="tip-card-minimal">
+              <div class="tip-icon-wrap bg-success-subtle">
+                <i class="bi bi-plug text-success"></i>
+              </div>
+              <div class="tip-content">
+                <span class="badge bg-success-subtle text-success mb-2"
+                  >Elektronik</span
+                >
+                <h5>Cabut Charger Tidak Terpakai</h5>
+                <p class="text-muted">
+                  Charger yang tetap tertancap terus mengonsumsi listrik
+                  (standby power) meski tidak mengisi perangkat. Cabut saat
+                  tidak digunakan.
+                </p>
+                <div class="d-flex align-items-center text-success">
+                  <i class="bi bi-arrow-down-circle me-2"></i>
+                  <small><strong>Kurangi 5-10%</strong> konsumsi standby</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="400"
+            data-category="pencahayaan">
+            <div class="tip-card-minimal">
+              <div class="tip-icon-wrap bg-warning-subtle">
+                <i class="bi bi-sun text-warning"></i>
+              </div>
+              <div class="tip-content">
+                <span class="badge bg-warning-subtle text-warning mb-2"
+                  >Pencahayaan</span
+                >
+                <h5>Maksimalkan Cahaya Alami</h5>
+                <p class="text-muted">
+                  Buka jendela dan gorden di siang hari untuk memanfaatkan
+                  cahaya matahari. Atur posisi meja kerja dekat jendela.
+                </p>
+                <div class="d-flex align-items-center text-success">
+                  <i class="bi bi-arrow-down-circle me-2"></i>
+                  <small
+                    ><strong>Hemat 20-30%</strong> listrik pencahayaan</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="500"
+            data-category="elektronik">
+            <div class="tip-card-minimal">
+              <div class="tip-icon-wrap bg-primary-subtle">
+                <i class="bi bi-tv text-primary"></i>
+              </div>
+              <div class="tip-content">
+                <span class="badge bg-primary-subtle text-primary mb-2"
+                  >Elektronik</span
+                >
+                <h5>Matikan Perangkat Sepenuhnya</h5>
+                <p class="text-muted">
+                  Mode standby tetap mengonsumsi daya. Matikan perangkat
+                  elektronik sepenuhnya atau gunakan stop kontak dengan saklar.
+                </p>
+                <div class="d-flex align-items-center text-success">
+                  <i class="bi bi-arrow-down-circle me-2"></i>
+                  <small
+                    ><strong>Hemat 5-10%</strong> konsumsi rumah tangga</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="600"
+            data-category="umum">
+            <div class="tip-card-minimal">
+              <div class="tip-icon-wrap bg-danger-subtle">
+                <i class="bi bi-clock text-danger"></i>
+              </div>
+              <div class="tip-content">
+                <span class="badge bg-danger-subtle text-danger mb-2"
+                  >Umum</span
+                >
+                <h5>Gunakan Listrik di Luar Jam Puncak</h5>
+                <p class="text-muted">
+                  Kurangi penggunaan perangkat berdaya tinggi saat jam sibuk
+                  (18.00-22.00). Gunakan timer untuk mencuci atau memasak di
+                  luar jam puncak.
+                </p>
+                <div class="d-flex align-items-center text-success">
+                  <i class="bi bi-arrow-down-circle me-2"></i>
+                  <small><strong>Optimalkan</strong> biaya listrik</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

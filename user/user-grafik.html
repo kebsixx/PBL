@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grafik Data - Energy Monitor</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body class="user-dashboard">
+    <!-- Top Navigation -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+      <div class="container-fluid px-4">
+        <a
+          class="navbar-brand d-flex align-items-center"
+          href="dashboard-user.html">
+          <i
+            class="bi bi-lightning-charge-fill text-primary me-2"
+            style="font-size: 1.5rem"></i>
+          <span class="fw-bold">Energy Monitor</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard-user.html">
+                <i class="bi bi-house-door me-1"></i>Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="user-grafik.html">
+                <i class="bi bi-graph-up me-1"></i>Grafik Data
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="user-tips.html">
+                <i class="bi bi-lightbulb me-1"></i>Tips Hemat
+              </a>
+            </li>
+            <li class="nav-item dropdown ms-3">
+              <a
+                class="nav-link dropdown-toggle d-flex align-items-center"
+                href="#"
+                id="userDropdown"
+                role="button"
+                data-bs-toggle="dropdown">
+                <div class="user-avatar-sm me-2">U</div>
+                <span>User</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="bi bi-person me-2"></i>Profil</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="bi bi-gear me-2"></i>Pengaturan</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item text-danger" href="../index.html"
+                    ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container py-4">
+      <div class="container-fluid px-4">
+        <!-- Page Header -->
+        <div class="row mb-4" data-aos="fade-down">
+          <div class="col-md-8">
+            <h4 class="mb-1">Grafik Penggunaan Listrik 📊</h4>
+            <p class="text-muted mb-0">Analisis detail konsumsi energi Anda</p>
+          </div>
+          <div class="col-md-4 text-md-end">
+            <div class="btn-group" role="group">
+              <input
+                type="radio"
+                class="btn-check"
+                name="period"
+                id="daily"
+                autocomplete="off"
+                checked />
+              <label class="btn btn-outline-primary btn-sm" for="daily"
+                >Harian</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="period"
+                id="weekly"
+                autocomplete="off" />
+              <label class="btn btn-outline-primary btn-sm" for="weekly"
+                >Mingguan</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="period"
+                id="monthly"
+                autocomplete="off" />
+              <label class="btn btn-outline-primary btn-sm" for="monthly"
+                >Bulanan</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Chart -->
+        <div class="row mb-4">
+          <div class="col-12" data-aos="fade-up">
+            <div class="card-minimal">
+              <div class="card-minimal-header">
+                <div>
+                  <h5 class="mb-1">Konsumsi Energi</h5>
+                  <p class="text-muted small mb-0">
+                    Grafik penggunaan listrik per periode
+                  </p>
+                </div>
+              </div>
+              <div class="card-minimal-body">
+                <canvas id="mainChart" style="max-height: 400px"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison Charts -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-minimal">
+              <div class="card-minimal-header">
+                <div>
+                  <h5 class="mb-1">Per Perangkat</h5>
+                  <p class="text-muted small mb-0">
+                    Konsumsi berdasarkan perangkat
+                  </p>
+                </div>
+              </div>
+              <div class="card-minimal-body">
+                <canvas id="deviceChart" style="max-height: 300px"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-minimal">
+              <div class="card-minimal-header">
+                <div>
+                  <h5 class="mb-1">Waktu Penggunaan</h5>
+                  <p class="text-muted small mb-0">Distribusi per jam</p>
+                </div>
+              </div>
+              <div class="card-minimal-body">
+                <canvas id="timeChart" style="max-height: 300px"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Statistics Summary -->
+        <div class="row g-3">
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-card-minimal">
+              <div class="stat-content-minimal">
+                <p class="stat-label">Total Bulan Ini</p>
+                <h3 class="stat-value">156 <small>kWh</small></h3>
+                <p class="text-muted small mb-0">Target: 150 kWh</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+            <div class="stat-card-minimal">
+              <div class="stat-content-minimal">
+                <p class="stat-label">Rata-rata Harian</p>
+                <h3 class="stat-value">5.2 <small>kWh</small></h3>
+                <p class="text-muted small mb-0">vs 5.6 kWh bulan lalu</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="500">
+            <div class="stat-card-minimal">
+              <div class="stat-content-minimal">
+                <p class="stat-label">Puncak Tertinggi</p>
+                <h3 class="stat-value">8.5 <small>kWh</small></h3>
+                <p class="text-muted small mb-0">15 Nov 2025</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="600">
+            <div class="stat-card-minimal">
+              <div class="stat-content-minimal">
+                <p class="stat-label">Efisiensi</p>
+                <h3 class="stat-value">87%</h3>
+                <p class="text-muted small mb-0">Sangat Baik</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

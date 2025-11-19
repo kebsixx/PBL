@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Energy Monitor</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body class="admin-dashboard">
+    <div class="admin-layout">
+      <!-- Sidebar -->
+      <aside class="admin-sidebar">
+        <div class="sidebar-header">
+          <a href="dashboard-admin.html" class="sidebar-brand">
+            <i class="bi bi-lightning-charge-fill"></i>
+            <span>Energy Monitor</span>
+          </a>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="dashboard-admin.html" class="sidebar-nav-item active">
+            <i class="bi bi-speedometer2"></i>Dashboard
+          </a>
+          <a href="admin-perangkat.html" class="sidebar-nav-item">
+            <i class="bi bi-hdd-stack"></i>Perangkat IoT
+          </a>
+          <a href="admin-laporan.html" class="sidebar-nav-item">
+            <i class="bi bi-file-earmark-bar-graph"></i>Laporan Data
+          </a>
+          <a href="admin-tips.html" class="sidebar-nav-item">
+            <i class="bi bi-lightbulb"></i>Tips Energi
+          </a>
+        </nav>
+        <div class="sidebar-footer">
+          <a href="../index.html" class="sidebar-nav-item">
+            <i class="bi bi-box-arrow-right"></i>Logout
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="admin-main-content">
+        <div class="admin-topbar">
+          <div>
+            <h5 class="mb-0">Dashboard Administrator</h5>
+            <small class="text-muted">Kelola sistem monitoring energi</small>
+          </div>
+          <div class="dropdown">
+            <button
+              class="btn btn-light dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown">
+              <div class="user-avatar-sm bg-success d-inline-flex me-2">A</div>
+              Admin
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-person me-2"></i>Profil</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-gear me-2"></i>Pengaturan</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item text-danger" href="../index.html"
+                  ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="p-4">
+          <!-- Stats Cards -->
+          <div class="row g-3 mb-4">
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="stat-card-minimal">
+                <div class="stat-icon-minimal bg-primary-subtle">
+                  <i class="bi bi-hdd-stack text-primary"></i>
+                </div>
+                <div class="stat-content-minimal">
+                  <p class="stat-label">Total Perangkat</p>
+                  <h3 class="stat-value">24</h3>
+                  <span class="badge badge-success-minimal">
+                    <i class="bi bi-arrow-up"></i> 2 baru
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+              <div class="stat-card-minimal">
+                <div class="stat-icon-minimal bg-success-subtle">
+                  <i class="bi bi-check-circle text-success"></i>
+                </div>
+                <div class="stat-content-minimal">
+                  <p class="stat-label">Perangkat Aktif</p>
+                  <h3 class="stat-value">21</h3>
+                  <span class="badge badge-success-minimal">
+                    <i class="bi bi-check"></i> 87.5%
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+              <div class="stat-card-minimal">
+                <div class="stat-icon-minimal bg-info-subtle">
+                  <i class="bi bi-people text-info"></i>
+                </div>
+                <div class="stat-content-minimal">
+                  <p class="stat-label">Pengguna Aktif</p>
+                  <h3 class="stat-value">8</h3>
+                  <span class="badge badge-neutral-minimal">
+                    <i class="bi bi-dash"></i> Stabil
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
+              <div class="stat-card-minimal">
+                <div class="stat-icon-minimal bg-warning-subtle">
+                  <i class="bi bi-lightning text-warning"></i>
+                </div>
+                <div class="stat-content-minimal">
+                  <p class="stat-label">Total Konsumsi</p>
+                  <h3 class="stat-value">1.2K <small>kWh</small></h3>
+                  <span class="badge badge-success-minimal">
+                    <i class="bi bi-arrow-down"></i> 8%
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+              <div class="card-minimal">
+                <div class="card-minimal-header">
+                  <div>
+                    <h5 class="mb-1">Aksi Cepat</h5>
+                    <p class="text-muted small mb-0">Shortcut manajemen</p>
+                  </div>
+                </div>
+                <div class="card-minimal-body">
+                  <div class="quick-actions-grid">
+                    <a href="admin-perangkat.html" class="quick-action-btn">
+                      <i class="bi bi-plus-circle"></i>
+                      <span>Tambah<br />Perangkat</span>
+                    </a>
+                    <a href="admin-laporan.html" class="quick-action-btn">
+                      <i class="bi bi-download"></i>
+                      <span>Unduh<br />Laporan</span>
+                    </a>
+                    <a href="admin-tips.html" class="quick-action-btn">
+                      <i class="bi bi-lightbulb"></i>
+                      <span>Kelola<br />Tips</span>
+                    </a>
+                    <button class="quick-action-btn">
+                      <i class="bi bi-gear"></i>
+                      <span>Pengaturan<br />Sistem</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-8" data-aos="fade-up" data-aos-delay="600">
+              <div class="card-minimal">
+                <div class="card-minimal-header">
+                  <div>
+                    <h5 class="mb-1">Status Sistem</h5>
+                    <p class="text-muted small mb-0">Monitoring real-time</p>
+                  </div>
+                </div>
+                <div class="card-minimal-body">
+                  <canvas id="adminChart" style="max-height: 240px"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4 mt-2">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="700">
+              <div class="card-minimal">
+                <div class="card-minimal-header">
+                  <div>
+                    <h5 class="mb-1">Aktivitas Terbaru</h5>
+                    <p class="text-muted small mb-0">Log sistem 24 jam</p>
+                  </div>
+                </div>
+                <div class="card-minimal-body">
+                  <div class="activity-list">
+                    <div class="activity-item">
+                      <div class="activity-icon bg-success-subtle">
+                        <i class="bi bi-plus-circle text-success"></i>
+                      </div>
+                      <div class="activity-content">
+                        <p class="mb-1">
+                          <strong>Perangkat baru ditambahkan</strong>
+                        </p>
+                        <small class="text-muted"
+                          >IOT-DEV-025 • 2 jam lalu</small
+                        >
+                      </div>
+                    </div>
+                    <div class="activity-item">
+                      <div class="activity-icon bg-primary-subtle">
+                        <i class="bi bi-pencil text-primary"></i>
+                      </div>
+                      <div class="activity-content">
+                        <p class="mb-1">
+                          <strong>Tips hemat energi diperbarui</strong>
+                        </p>
+                        <small class="text-muted"
+                          >3 tips baru • 5 jam lalu</small
+                        >
+                      </div>
+                    </div>
+                    <div class="activity-item">
+                      <div class="activity-icon bg-warning-subtle">
+                        <i class="bi bi-exclamation-triangle text-warning"></i>
+                      </div>
+                      <div class="activity-content">
+                        <p class="mb-1">
+                          <strong>Peringatan konsumsi tinggi</strong>
+                        </p>
+                        <small class="text-muted">User #12 • 8 jam lalu</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="800">
+              <div class="card-minimal">
+                <div class="card-minimal-header">
+                  <div>
+                    <h5 class="mb-1">Perangkat Kritis</h5>
+                    <p class="text-muted small mb-0">Perlu perhatian</p>
+                  </div>
+                </div>
+                <div class="card-minimal-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Lokasi</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>IOT-001</code></td>
+                          <td>Server</td>
+                          <td><span class="badge bg-success">Online</span></td>
+                        </tr>
+                        <tr>
+                          <td><code>IOT-003</code></td>
+                          <td>Kantor</td>
+                          <td><span class="badge bg-danger">Offline</span></td>
+                        </tr>
+                        <tr>
+                          <td><code>IOT-012</code></td>
+                          <td>Cafetaria</td>
+                          <td><span class="badge bg-warning">Warning</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <a
+                    href="admin-perangkat.html"
+                    class="btn btn-outline-primary w-100 mt-2">
+                    Lihat Semua <i class="bi bi-arrow-right ms-1"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/main.js"></script>
+  </body>
+</html>
