@@ -246,7 +246,7 @@ a {
   color: #fff;
 }
 
-/* ==================== CARD STYLES - MINIMALIST ==================== */
+/* ==================== CARD STYLES ==================== */
 .card-minimal {
   background: #fff;
   border-radius: var(--border-radius);
@@ -279,7 +279,7 @@ a {
   padding: 1.5rem;
 }
 
-/* ==================== STAT CARDS - MINIMALIST ==================== */
+/* ==================== STAT CARDS ==================== */
 .stat-card-minimal {
   background: #fff;
   border-radius: var(--border-radius);
@@ -337,7 +337,7 @@ a {
   color: var(--gray-600);
 }
 
-/* ==================== BADGES - MINIMALIST ==================== */
+/* ==================== BADGES ==================== */
 .badge-success-minimal {
   background-color: rgba(25, 135, 84, 0.1);
   color: var(--success);
@@ -398,7 +398,7 @@ a {
   gap: 0.35rem;
 }
 
-/* ==================== TIP CARDS - MINIMALIST ==================== */
+/* ==================== TIP CARDS ==================== */
 .tip-card-minimal {
   background: #fff;
   border-radius: var(--border-radius);

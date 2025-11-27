@@ -111,13 +111,11 @@ function initializeUserDashboard() {
         },
       },
     });
-    // Buat perangkat aktif tidak flat: update bergelombang berkala
     const chartInstance = Chart.getChart(adminChartCanvas);
     let phase = 0;
     setInterval(() => {
       if (!chartInstance) return;
       const dev = chartInstance.data.datasets[1].data;
-      // gelombang sinus kecil + jitter agar berbeda tiap interval
       phase += 0.6;
       const base = 20;
       const wave = Math.round(5 * Math.sin(phase));
@@ -279,7 +277,7 @@ function initializeUserGrafik() {
 }
 
 function updateCharts(period) {
-  // Update chart data based on selected period
+  // Chart data based on selected period
   let labels, data;
 
   if (period === "daily") {
@@ -670,8 +668,6 @@ function formatDate(date) {
 
 // Show notification
 function showNotification(message, type = "success") {
-  // Simple notification implementation
-  // In production, use a proper notification library
   alert(message);
 }
 
