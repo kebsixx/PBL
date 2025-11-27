@@ -111,6 +111,22 @@ function initializeUserDashboard() {
         },
       },
     });
+    // Buat perangkat aktif tidak flat: update bergelombang berkala
+    const chartInstance = Chart.getChart(adminChartCanvas);
+    let phase = 0;
+    setInterval(() => {
+      if (!chartInstance) return;
+      const dev = chartInstance.data.datasets[1].data;
+      // gelombang sinus kecil + jitter agar berbeda tiap interval
+      phase += 0.6;
+      const base = 20;
+      const wave = Math.round(5 * Math.sin(phase));
+      const jitter = Math.floor(Math.random() * 5) - 2; // -2..2
+      const nextVal = Math.max(0, base + wave + jitter);
+      dev.push(nextVal);
+      dev.shift();
+      chartInstance.update("none");
+    }, 2500);
   }
 }
 
@@ -342,23 +358,39 @@ function initializeAdminDashboard() {
     new Chart(ctx, {
       type: "line",
       data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun"],
+        labels: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "Mei",
+          "Jun",
+          "Jul",
+          "Agu",
+          "Sep",
+          "Okt",
+          "Nov",
+        ],
         datasets: [
           {
             label: "Konsumsi Total (kWh)",
-            data: [4200, 4500, 4100, 4800, 4400, 4650],
+            data: [
+              4200, 4500, 4100, 4800, 4400, 4650, 4725, 4580, 4890, 4410, 4760,
+            ],
             borderColor: "#0d6efd",
             backgroundColor: "rgba(13, 110, 253, 0.1)",
             tension: 0.4,
             fill: true,
+            yAxisID: "y",
           },
           {
             label: "Perangkat Aktif",
-            data: [18, 19, 20, 21, 22, 21],
+            data: [9, 22, 18, 25, 19, 34, 27, 31, 24, 38, 33],
             borderColor: "#198754",
             backgroundColor: "rgba(25, 135, 84, 0.1)",
-            tension: 0.4,
+            tension: 0.5,
             fill: true,
+            yAxisID: "y1",
           },
         ],
       },
@@ -374,8 +406,22 @@ function initializeAdminDashboard() {
         scales: {
           y: {
             beginAtZero: true,
+            suggestedMax: 6000,
             grid: {
               color: "rgba(0, 0, 0, 0.05)",
+            },
+            ticks: {
+              callback: function (value) {
+                return value >= 1000 ? value / 1000 + "k" : value;
+              },
+            },
+          },
+          y1: {
+            beginAtZero: true,
+            max: 60,
+            position: "right",
+            grid: {
+              drawOnChartArea: false,
             },
           },
           x: {
@@ -432,7 +478,6 @@ function initializeAdminPerangkat() {
       if (this.title === "Hapus") {
         if (confirm("Apakah Anda yakin ingin menghapus perangkat ini?")) {
           alert("Perangkat berhasil dihapus!");
-          // In production, make API call to delete
         }
       }
     });
