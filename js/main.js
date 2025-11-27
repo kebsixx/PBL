@@ -641,7 +641,6 @@ function initializeAdminTips() {
       if (this.title === "Hapus") {
         if (confirm("Apakah Anda yakin ingin menghapus tips ini?")) {
           alert("Tips berhasil dihapus!");
-          // In production, make API call to delete
         }
       }
     });
