@@ -1,6 +1,3 @@
-// ==================== MINIMALIST ENERGY MONITOR JAVASCRIPT ====================
-
-// ==================== INITIALIZATION ====================
 document.addEventListener("DOMContentLoaded", function () {
   // Initialize AOS (Animate on Scroll)
   if (typeof AOS !== "undefined") {
@@ -35,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// ==================== LOGIN PAGE ====================
 function initializeLoginPage() {
   const loginForm = document.getElementById("loginForm");
   const togglePassword = document.getElementById("togglePassword");
@@ -70,7 +66,6 @@ function initializeLoginPage() {
   }
 }
 
-// ==================== USER DASHBOARD ====================
 function initializeUserDashboard() {
   // Initialize quick chart
   const quickChartCanvas = document.getElementById("quickChart");
@@ -119,7 +114,6 @@ function initializeUserDashboard() {
   }
 }
 
-// ==================== USER GRAFIK PAGE ====================
 function initializeUserGrafik() {
   // Period filter buttons
   const filterButtons = document.querySelectorAll(".filter-btn");
@@ -290,7 +284,6 @@ function updateCharts(period) {
   }
 }
 
-// ==================== USER TIPS PAGE ====================
 function initializeUserTips() {
   const categoryButtons = document.querySelectorAll(".filter-btn");
   const searchInput = document.getElementById("searchTips");
@@ -339,7 +332,6 @@ function initializeUserTips() {
   }
 }
 
-// ==================== ADMIN DASHBOARD ====================
 function initializeAdminDashboard() {
   // Mobile Sidebar Toggle
   initializeMobileSidebar();
@@ -397,7 +389,6 @@ function initializeAdminDashboard() {
   }
 }
 
-// ==================== ADMIN PERANGKAT ====================
 function initializeAdminPerangkat() {
   // Initialize DataTables
   if (typeof $.fn.DataTable !== "undefined") {
@@ -448,7 +439,6 @@ function initializeAdminPerangkat() {
   });
 }
 
-// ==================== ADMIN LAPORAN ====================
 function initializeAdminLaporan() {
   // Initialize DataTables
   if (typeof $.fn.DataTable !== "undefined") {
@@ -565,7 +555,6 @@ function initializeAdminLaporan() {
   }
 }
 
-// ==================== ADMIN TIPS ====================
 function initializeAdminTips() {
   // Initialize DataTables
   if (typeof $.fn.DataTable !== "undefined") {
@@ -616,8 +605,6 @@ function initializeAdminTips() {
   });
 }
 
-// ==================== UTILITY FUNCTIONS ====================
-
 // Format number as currency
 function formatCurrency(amount) {
   return new Intl.NumberFormat("id-ID", {
@@ -643,7 +630,6 @@ function showNotification(message, type = "success") {
   alert(message);
 }
 
-// ==================== MOBILE SIDEBAR ====================
 function initializeMobileSidebar() {
   // Check if we're on admin pages
   const adminSidebar = document.querySelector(".admin-sidebar");
@@ -717,7 +703,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// ==================== EXPORT ====================
 // Export functions if using modules
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
