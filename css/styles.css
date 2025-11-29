@@ -1239,6 +1239,17 @@ a {
   /* Admin Topbar Mobile */
   .admin-topbar {
     padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .admin-topbar > div {
+    width: 100%;
+  }
+
+  .admin-topbar .btn {
+    width: 100%;
   }
 
   .admin-topbar h5 {
