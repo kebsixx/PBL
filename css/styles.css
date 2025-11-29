@@ -1039,7 +1039,7 @@ a {
 /* ==================== QUICK ACTION BUTTONS ==================== */
 .quick-actions-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 0.75rem;
 }
 
@@ -1048,8 +1048,8 @@ a {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: 1rem;
-  padding: 1.25rem 1.5rem;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   border: 2px solid var(--gray-200);
   border-radius: var(--border-radius);
@@ -1070,7 +1070,7 @@ a {
 }
 
 .quick-action-btn i {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   transition: var(--transition);
   line-height: 1;
   flex-shrink: 0;
@@ -1342,31 +1342,40 @@ a {
 
   /* Stats Cards Mobile - Full Width */
   .stat-card-minimal {
-    padding: 1.25rem 1rem;
+    padding: 1rem;
+    flex-direction: row;
+    align-items: center;
   }
 
   .stat-icon-minimal {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0;
   }
 
   .stat-icon-minimal i {
-    font-size: 1.65rem;
+    font-size: 1.5rem;
+  }
+
+  .stat-content-minimal {
+    width: auto;
+    flex: 1;
   }
 
   .stat-label {
     font-size: 0.85rem;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.25rem;
+    white-space: normal;
   }
 
   .stat-value {
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .badge {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
   }
 
   .stat-value small {
@@ -1375,26 +1384,29 @@ a {
 
   /* Quick Actions Mobile - Vertical Layout */
   .quick-actions-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
   .quick-action-btn {
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    padding: 1.25rem 0.75rem;
-    gap: 0.65rem;
-    aspect-ratio: 1;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 1rem;
+    gap: 1rem;
+    aspect-ratio: auto;
+    min-height: auto;
+    height: auto;
   }
 
   .quick-action-btn i {
-    font-size: 2rem;
+    font-size: 1.75rem;
     line-height: 1;
+    margin-bottom: 0;
   }
 
   .quick-action-btn span {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     line-height: 1.3;
     font-weight: 600;
     white-space: normal;
